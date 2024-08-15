@@ -1,8 +1,11 @@
 {
   "scripts": {
-        "gulp": "gulp"
-    },
+    "gulp": "gulp",
+        "php": "php -S localhost:8000 -t public",
+        "start": "concurrently \"npm run gulp\" \"npm run php\""
+  },
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "gulp": "^5.0.0",
     "gulp-sass": "^5.1.0",
     "sass": "^1.77.8"
