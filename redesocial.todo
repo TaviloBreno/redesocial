@@ -1,0 +1,60 @@
+Desenvolvimento das Funcionalidades
+Criação e Gerenciamento de Usuários:
+
+    ✔ Model: Crie o modelo de Usuário (User.php). @done(24-08-15 17:24)
+    ✔ Controller: Crie o controlador de Usuário (UserController.php) com funções para registro, login, etc. @done(24-08-15 17:35)
+    ☐ View: Desenvolva as views para registro e perfil (views/user/profile.php, views/user/settings.php).
+Postagens:
+
+    ☐ Model: Crie o modelo de Postagem (Post.php).
+    ☐ Controller: Crie o controlador de Postagem (PostController.php) com funções para criar, listar e visualizar postagens.
+    ☐ View: Desenvolva as views para criar e visualizar postagens (views/post/create.php, views/post/view.php).
+Comentários:
+
+    ☐ Model: Crie o modelo de Comentário (Comment.php).
+    ☐ Controller: Adicione funcionalidades de comentário ao controlador de Postagem.
+    ☐ View: Atualize as views de postagem para incluir a seção de comentários.
+Sistema de Amizade/Seguimento:
+
+    ☐ Model: Crie o modelo de Amizade/Seguimento.
+    ☐ Controller: Adicione funcionalidades de amizade/seguimento ao controlador de Usuário.
+    ☐ View: Desenvolva as views para gerenciamento de amizades/seguimentos.
+5. Autenticação e Autorização
+Implementar Autenticação:
+
+    ☐ Desenvolva o sistema de login e logout.
+    ☐ Implemente a proteção de rotas para usuários autenticados.
+Gerenciar Permissões:
+
+    ☐ Adicione funcionalidades para definir permissões e papéis de usuário.
+6. Testes
+Testes Unitários:
+
+    ☐ Escreva testes unitários para modelos e controladores.
+Testes Funcionais:
+
+    ☐ Realize testes funcionais para garantir que as principais funcionalidades estão funcionando corretamente.
+7. Melhorias e Refinamento
+Otimização:
+
+    ☐ Otimize consultas ao banco de dados e o desempenho da aplicação.
+Refinamento da Interface:
+
+    ☐ Melhore a interface do usuário com base no feedback e testes.
+Correção de Bugs:
+
+    ☐ Corrija quaisquer problemas encontrados durante os testes.
+8. Implantação
+Preparar o Ambiente de Produção:
+
+    ☐ Configure o servidor de produção e o ambiente de banco de dados.
+Monitoramento e Manutenção:
+
+Configure ferramentas de monitoramento e prepare-se para a manutenção contínua.
+9. Documentação
+Documentar o Código:
+
+Comente o código e crie uma documentação técnica.
+Criar Guia do Usuário:
+
+    ☐ Desenvolva um guia de usuário para ajudar os usuários a navegar pela rede social.
