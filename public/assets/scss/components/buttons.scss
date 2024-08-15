@@ -1,0 +1,49 @@
+// _buttons.scss
+
+// Estilo base para botões
+.btn {
+    display: inline-block;
+    padding: $padding-base;
+    font-size: $font-size-base;
+    font-family: $font-primary;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  // Botão primário
+  .btn-primary {
+    background-color: $primary-color;
+    color: #fff;
+    border: 1px solid $primary-color;
+    &:hover {
+      background-color: darken($primary-color, 10%);
+      border-color: darken($primary-color, 10%);
+    }
+  }
+  
+  // Botão secundário
+  .btn-secondary {
+    background-color: $secondary-color;
+    color: #fff;
+    border: 1px solid $secondary-color;
+    &:hover {
+      background-color: darken($secondary-color, 10%);
+      border-color: darken($secondary-color, 10%);
+    }
+  }
+  
+  // Botão de link
+  .btn-link {
+    background: none;
+    color: $primary-color;
+    border: none;
+    text-decoration: underline;
+    &:hover {
+      color: darken($primary-color, 10%);
+    }
+  }
+  

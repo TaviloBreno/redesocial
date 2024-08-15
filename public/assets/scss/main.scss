@@ -1,0 +1,25 @@
+// Importa variáveis e mixins
+@import 'base/variables';
+@import 'base/mixins';
+
+// Importa estilos base
+@import 'base/reset';
+@import 'base/typography';
+
+// Importa componentes
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/navbar';
+
+// Importa layout
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/grid';
+
+// Importa estilos específicos de páginas
+@import 'pages/home';
+@import 'pages/profile';
+@import 'pages/settings';
+@import 'pages/inicial';
+
+

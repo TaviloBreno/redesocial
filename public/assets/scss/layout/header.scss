@@ -1,0 +1,78 @@
+@use 'sass:math'; // Importa o módulo math do Sass
+
+// _header.scss
+
+// Estilos básicos para o cabeçalho
+header {
+  background-color: $primary-color;
+  padding: math.div($padding-base, 2); // Atualizado para math.div
+  color: #fff;
+  
+  h1 {
+    font-size: $font-size-lg;
+    margin: 0;
+    text-align: center;
+  }
+
+  nav {
+    margin-top: math.div($padding-base, 2); // Atualizado para math.div
+    
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap; // Para ajustar itens em diferentes tamanhos de tela
+
+      li {
+        margin: 0;
+      }
+
+      a {
+        color: #fff;
+        text-decoration: none;
+        padding: math.div($padding-base, 2); // Atualizado para math.div
+        display: block;
+        transition: background-color 0.3s ease;
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+    }
+  }
+}
+
+// Estilos para tablets (768px a 1024px)
+@media (max-width: 1024px) {
+  header {
+    h1 {
+      font-size: $font-size-lg;
+    }
+    
+    nav ul {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+// Estilos para mobile (até 768px)
+@media (max-width: 768px) {
+  header {
+    padding: math.div($padding-base, 4); // Atualizado para math.div
+    h1 {
+      font-size: $font-size-base;
+    }
+    
+    nav ul {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    nav a {
+      padding: math.div($padding-base, 4); // Atualizado para math.div
+      text-align: center;
+    }
+  }
+}

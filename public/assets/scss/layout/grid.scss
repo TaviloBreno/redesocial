@@ -1,0 +1,51 @@
+// _grid.scss
+
+// Configurações de grid
+$grid-columns: 12; // Número de colunas
+$grid-gutter: $padding-base; // Espaçamento entre colunas
+
+// Container do grid
+.container {
+  width: 100%;
+  max-width: 1200px; // Largura máxima do container
+  margin: 0 auto;
+  padding: 0 $grid-gutter;
+}
+
+// Colunas
+.col {
+  float: left;
+  padding-right: $grid-gutter;
+  box-sizing: border-box;
+}
+
+// Gerar colunas responsivas
+@for $i from 1 through $grid-columns {
+  .col-#{$i} {
+    width: calc(100% / $grid-columns) * $i;
+  }
+}
+
+// Reset de float e clearfix
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+// Estilos para tablets (768px a 1024px)
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 div($grid-gutter, 2); // Atualizado para div
+  }
+}
+
+// Estilos para mobile (até 768px)
+@media (max-width: 768px) {
+  .container {
+    padding: 0 div($grid-gutter, 4); // Atualizado para div
+  }
+  .col {
+    padding-right: div($grid-gutter, 4); // Atualizado para div
+  }
+}

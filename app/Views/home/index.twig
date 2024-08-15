@@ -1,13 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <h1>{{ title }}</h1>
-    <p>Esta é a página inicial da Rede Social.</p>
-</body>
-</html>
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+    <div class="container">
+        <header class="header">
+            <h1>Bem-vindo à Página Inicial</h1>
+        </header>
+
+        <main class="main-content">
+            <section class="feed">
+                <div class="tweet-composer">
+                    <textarea placeholder="O que está acontecendo?"></textarea>
+                    <button type="button">Tweetar</button>
+                </div>
+                <div class="tweets">
+                    <article class="tweet">
+                        <div class="tweet-header">
+                            <img src="/assets/images/user1.jpg" alt="User1" class="user-avatar">
+                            <div class="user-info">
+                                <h2>Usuário1</h2>
+                                <p>@usuario1</p>
+                            </div>
+                        </div>
+                        <p class="tweet-content">Este é um exemplo de tweet. Adicione seu próprio conteúdo aqui.</p>
+                    </article>
+                    <article class="tweet">
+                        <div class="tweet-header">
+                            <img src="/assets/images/user2.jpg" alt="User2" class="user-avatar">
+                            <div class="user-info">
+                                <h2>Usuário2</h2>
+                                <p>@usuario2</p>
+                            </div>
+                        </div>
+                        <p class="tweet-content">Aqui está outro tweet de exemplo. Você pode ver mais tweets na timeline.</p>
+                    </article>
+                </div>
+            </section>
+
+            <aside class="sidebar">
+                <div class="trends">
+                    <h3>Tendências para Você</h3>
+                    <ul>
+                        <li><a href="#">#Tendência1</a></li>
+                        <li><a href="#">#Tendência2</a></li>
+                        <li><a href="#">#Tendência3</a></li>
+                        <li><a href="#">#Tendência4</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </main>
+    </div>
+{% endblock %}

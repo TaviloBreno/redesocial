@@ -1,0 +1,30 @@
+// _navbar.scss
+
+nav {
+    background-color: $primary-color;
+    padding: $padding-base;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  nav li {
+    margin: 0;
+  }
+  
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: $padding-base;
+    display: block;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+  

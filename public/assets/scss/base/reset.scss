@@ -1,0 +1,60 @@
+/* Reset de margens e preenchimento */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Remove o estilo padrão das listas */
+ul,
+ol {
+    list-style: none;
+}
+
+/* Remove o estilo padrão dos links */
+a {
+    text-decoration: none;
+    color: inherit; /* Herda a cor do elemento pai */
+}
+
+/* Define a fonte padrão */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* Define a altura e o estilo padrão dos campos de formulário */
+input,
+textarea,
+select,
+button {
+    font: inherit;
+}
+
+/* Remove a borda padrão dos botões */
+button {
+    border: none;
+    background: none;
+}
+
+/* Ajusta tabelas */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Ajusta imagens para se adaptarem ao contêiner */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Remove a borda padrão dos campos de formulário */
+fieldset {
+    border: none;
+    padding: 0;
+}

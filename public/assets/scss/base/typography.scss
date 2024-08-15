@@ -1,0 +1,22 @@
+// _typography.scss
+
+body {
+    font-family: $font-primary;
+    font-size: $font-size-base;
+    color: $text-color;
+    line-height: 1.6;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-secondary;
+    margin-bottom: $margin-base;
+  }
+  
+  a {
+    color: $primary-color;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  

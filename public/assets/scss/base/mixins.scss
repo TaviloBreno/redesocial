@@ -1,0 +1,22 @@
+// _mixins.scss
+
+// Mixin para fontes responsivas
+@mixin responsive-font($size) {
+    font-size: $size;
+    @media (max-width: 768px) {
+      font-size: $size * 0.875;
+    }
+  }
+  
+  // Mixin para clearfix
+  @mixin clearfix() {
+    &:before,
+    &:after {
+      content: "";
+      display: table;
+    }
+    &:after {
+      clear: both;
+    }
+  }
+  

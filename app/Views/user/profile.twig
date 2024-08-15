@@ -1,16 +1,6 @@
-{# views/user/profile.twig #}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Perfil</title>
-    <link rel="stylesheet" href="/path/to/your/styles.css">
-</head>
-<body>
-    <h1>Perfil de {{ user.username }}</h1>
-    <p>Email: {{ user.email }}</p>
+{% extends 'layouts/base.twig' %}
 
-    <a href="/settings">Configurações</a>
-    <a href="/logout">Sair</a>
-</body>
-</html>
+{% block content %}
+    <h1>Perfil do Usuário</h1>
+    <!-- Detalhes do perfil -->
+{% endblock %}

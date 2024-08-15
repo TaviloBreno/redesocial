@@ -1,0 +1,38 @@
+// _forms.scss
+
+// Estilo base para inputs e selects
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: $padding-base;
+  font-size: $font-size-base;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: $margin-base;
+  &:focus {
+    border-color: $primary-color;
+    outline: none;
+  }
+}
+
+// Estilo para o botão de submit
+input[type="submit"] {
+  @extend .btn;
+  background-color: $primary-color;
+  color: #fff;
+  border: none;
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+// Estilo para labels
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
