@@ -11,5 +11,7 @@
             "email": "tavilo.breno10@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "twig/twig": "^3.11"
+    }
 }
