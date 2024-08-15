@@ -1,0 +1,25 @@
+{# views/user/settings.twig #}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Configurações</title>
+    <link rel="stylesheet" href="/path/to/your/styles.css">
+</head>
+<body>
+    <h1>Configurações de {{ user.username }}</h1>
+    <form action="/update-settings" method="post">
+        <label for="username">Nome de Usuário:</label>
+        <input type="text" id="username" name="username" value="{{ user.username }}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ user.email }}" required>
+
+        <label for="password">Nova Senha:</label>
+        <input type="password" id="password" name="password">
+
+        <button type="submit">Atualizar</button>
+    </form>
+    <a href="/profile">Voltar ao perfil</a>
+</body>
+</html>
