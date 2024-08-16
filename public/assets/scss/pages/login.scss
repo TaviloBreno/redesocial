@@ -1,19 +1,40 @@
-/* Estilo para a página de login */
+// login.scss
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden; // Previne rolagem
+}
+
+.login {
+    position: absolute; // Garante que o container ocupe toda a tela
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/assets/img/socializar.jpg') no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
+}
+
 .login-container {
+    position: relative; // Garante que o container de login fique sobre a imagem de fundo
     max-width: 400px;
-    margin: 45px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
+    margin: $margin-base auto;
+    padding: $padding-base;
+    border: 1px solid $border-color;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
+    background-color: rgba(255, 255, 255, 0.9); // Levemente transparente
+    font-family: $font-primary; // Aplica a fonte primária
 }
 
 .login-container h2 {
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
+    margin-bottom: $margin-base;
+    font-size: $font-size-lg;
+    color: $text-color;
 }
 
 .login-container form {
@@ -22,21 +43,21 @@
 }
 
 .login-container div {
-    margin-bottom: 15px;
+    margin-bottom: $margin-base;
 }
 
 .login-container label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #333;
+    color: $text-color;
 }
 
 .login-container input[type="email"],
 .login-container input[type="password"] {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid $border-color;
     border-radius: 4px;
     box-sizing: border-box;
 }
@@ -45,13 +66,14 @@
     padding: 10px;
     border: none;
     border-radius: 4px;
-    background-color: #007bff;
+    background-color: $primary-color;
     color: white;
-    font-size: 16px;
+    font-size: $font-size-base;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-family: $font-primary; // Aplica a fonte primária
 }
 
 .login-container button:hover {
-    background-color: #0056b3;
+    background-color: darken($primary-color, 10%); // Ajusta a cor ao passar o mouse
 }

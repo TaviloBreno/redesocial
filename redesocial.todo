@@ -22,7 +22,7 @@ Sistema de Amizade/Seguimento:
 5. Autenticação e Autorização
 Implementar Autenticação:
 
-    ☐ Desenvolva o sistema de login e logout.
+    ✔ Desenvolva o sistema de login e logout. @done(24-08-15 21:59)
     ☐ Implemente a proteção de rotas para usuários autenticados.
 Gerenciar Permissões:
 
