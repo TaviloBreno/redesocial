@@ -19,10 +19,14 @@ class Router
     // Encontra e executa o manipulador da rota
     public function dispatch($method, $uri)
     {
+        // Normaliza a URI para ignorar query strings
+        $parsedUrl = parse_url($uri);
+        $path = $parsedUrl['path'];
+
         foreach ($this->routes as $route) {
-            if ($route['method'] === $method && $route['path'] === $uri) {
+            if ($route['method'] === $method && $route['path'] === $path) {
                 $handler = $route['handler'];
-                
+
                 if (is_array($handler)) {
                     // Se o handler for um array (controlador e método)
                     list($controller, $action) = $handler;
@@ -49,6 +53,7 @@ class Router
                 throw new \Exception("Método $action não encontrado no controlador $controller.");
             }
         }
+
         // Se nenhuma rota correspondente for encontrada
         http_response_code(404);
         echo "Página não encontrada.";

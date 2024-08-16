@@ -1,88 +1,101 @@
+/* Estiliza o corpo da página e o layout principal */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  flex: 1; /* Faz com que o main expanda para preencher o espaço disponível */
+}
+
+/* Estilos do footer */
 footer {
-    background-color: $footer-background-color;
-    color: $footer-text-color;
-    padding: $padding-base;
-    border-top: 1px solid $border-color;
+  background-color: $footer-background-color;
+  color: $footer-text-color;
+  padding: $padding-base;
+  border-top: 1px solid $border-color;
   
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-  
-      .footer-links {
-        margin-bottom: $padding-base;
-        
-        ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-  
-          li {
-            display: inline;
-            margin: 0 calc($padding-base / 2);
-  
-            a {
-              color: $footer-link-color;
-              text-decoration: none;
-              font-weight: bold;
-  
-              &:hover {
-                text-decoration: underline;
-              }
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .footer-links {
+      margin-bottom: $padding-base;
+      
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          display: inline;
+          margin: 0 calc($padding-base / 2);
+
+          a {
+            color: $footer-link-color;
+            text-decoration: none;
+            font-weight: bold;
+
+            &:hover {
+              text-decoration: underline;
             }
+          }
+        }
+      }
+    }
+
+    .footer-social {
+      margin-bottom: $padding-base;
+
+      .social-icon {
+        display: inline-block;
+        margin: 0 calc($padding-base / 2);
+
+        img {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+
+    .footer-bottom {
+      p {
+        margin: 0;
+        font-size: $font-size-base;
+      }
+    }
+  }
+
+  // Estilos para tablets (768px a 1024px)
+  @media (max-width: 1024px) {
+    .footer-content {
+      .footer-links ul li {
+        display: block;
+        margin: $padding-base 0;
+      }
+    }
+  }
+
+  // Estilos para mobile (até 768px)
+  @media (max-width: 768px) {
+    .footer-content {
+      .footer-links {
+        margin-bottom: calc($padding-base / 2);
+  
+        ul {
+          li {
+            margin: calc($padding-base / 2) 0;
           }
         }
       }
   
       .footer-social {
-        margin-bottom: $padding-base;
-  
-        .social-icon {
-          display: inline-block;
-          margin: 0 calc($padding-base / 2);
-  
-          img {
-            width: 24px;
-            height: 24px;
-          }
-        }
-      }
-  
-      .footer-bottom {
-        p {
-          margin: 0;
-          font-size: $font-size-base;
-        }
-      }
-    }
-  
-    // Estilos para tablets (768px a 1024px)
-    @media (max-width: 1024px) {
-      .footer-content {
-        .footer-links ul li {
-          display: block;
-          margin: $padding-base 0;
-        }
-      }
-    }
-  
-    // Estilos para mobile (até 768px)
-    @media (max-width: 768px) {
-      .footer-content {
-        .footer-links {
-          margin-bottom: calc(padding-base / 2);
-    
-          ul {
-            li {
-              margin: calc($padding-base / 2) 0;
-            }
-          }
-        }
-    
-        .footer-social {
-          margin-bottom: calc($padding-base/2);
-        }
+        margin-bottom: calc($padding-base / 2);
       }
     }
   }
+}
