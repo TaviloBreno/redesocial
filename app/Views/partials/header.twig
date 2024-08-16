@@ -4,10 +4,14 @@
     <nav>
         <ul>
             <li><a href="/">Início</a></li>
+            {% if session.user %}
             <li><a href="/user/profile">Perfil</a></li>
+            {% endif %}
             <li><a href="/user/settings">Configurações</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/user/register">Registro</a></li>
+            {% if not session.user %}
+                <li><a href="/login">Login</a></li>
+                <li><a href="/user/register">Registro</a></li>
+            {% endif %}
         </ul>
     </nav>
 </header>

@@ -23,7 +23,7 @@ Sistema de Amizade/Seguimento:
 Implementar Autenticação:
 
     ✔ Desenvolva o sistema de login e logout. @done(24-08-15 21:59)
-    ☐ Implemente a proteção de rotas para usuários autenticados.
+    ✔ Implemente a proteção de rotas para usuários autenticados. @done(24-08-16 00:17)
 Gerenciar Permissões:
 
     ☐ Adicione funcionalidades para definir permissões e papéis de usuário.

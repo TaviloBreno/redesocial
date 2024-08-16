@@ -10,9 +10,9 @@ class Database
     private static $instance = null;
     private $pdo;
 
-    private function __construct()
+    public function __construct()
     {
-        $config = require __DIR__ . '/../config/config.php';
+        $config = require __DIR__ . '/../../config/config.php';
         $dbConfig = $config['db'];
 
         $dsn = "mysql:host={$dbConfig['host']};dbname={$dbConfig['dbname']};charset=utf8mb4";
