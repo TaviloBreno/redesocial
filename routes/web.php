@@ -9,3 +9,8 @@ $router->add('POST', '/posts', 'PostController@store');       // Armazena a nova
 $router->add('GET', '/posts', 'PostController@index');         // Lista todas as postagens
 $router->add('GET', '/posts/{id}', 'PostController@show');     // Exibe uma postagem específica
 $router->add('POST', '/posts/{id}/comments', 'PostController@addComment'); // Adiciona um comentário a uma postagem
+
+$router->add('POST', '/friends/add', 'FriendshipController@add');
+$router->add('POST', '/friends/remove', 'FriendshipController@remove');
+$router->add('GET', '/users/{id}/friends', 'FriendshipController@list');
+

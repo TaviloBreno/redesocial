@@ -1,0 +1,12 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+    <h1>Amigos</h1>
+    <ul>
+        {% for friend in friends %}
+            <li>{{ friend.username }}</li>
+        {% else %}
+            <li>Nenhum amigo encontrado.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

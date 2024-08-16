@@ -13,7 +13,7 @@ Comentários:
 
     ✔ Model: Crie o modelo de Comentário (Comment.php). @done(24-08-15 23:28)
     ✔ Controller: Adicione funcionalidades de comentário ao controlador de Postagem. @done(24-08-15 23:37)
-    ☐ View: Atualize as views de postagem para incluir a seção de comentários.
+    ✔ View: Atualize as views de postagem para incluir a seção de comentários. @done(24-08-15 23:41)
 Sistema de Amizade/Seguimento:
 
     ☐ Model: Crie o modelo de Amizade/Seguimento.
