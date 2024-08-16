@@ -26,7 +26,7 @@ Implementar Autenticação:
     ✔ Implemente a proteção de rotas para usuários autenticados. @done(24-08-16 00:17)
 Gerenciar Permissões:
 
-    ☐ Adicione funcionalidades para definir permissões e papéis de usuário.
+    ✔ Adicione funcionalidades para definir permissões e papéis de usuário. @done(24-08-16 00:49)
 6. Testes
 Testes Unitários:
 
