@@ -8,7 +8,7 @@ Postagens:
 
     ✔ Model: Crie o modelo de Postagem (Post.php). @done(24-08-15 19:52)
     ✔ Controller: Crie o controlador de Postagem (PostController.php) com funções para criar, listar e visualizar postagens. @done(24-08-15 22:05)
-    ☐ View: Desenvolva as views para criar e visualizar postagens (views/post/create.php, views/post/view.php).
+    ✔ View: Desenvolva as views para criar e visualizar postagens (views/post/create.php, views/post/view.php). @done(24-08-15 23:23)
 Comentários:
 
     ☐ Model: Crie o modelo de Comentário (Comment.php).
