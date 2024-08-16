@@ -1,0 +1,36 @@
+{# views/friendship/index.twig #}
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+    <h2>Minhas Amizades / Seguimentos</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for friendship in friendships %}
+                <tr>
+                    <td>{{ friendship.username }}</td>
+                    <td>{{ friendship.email }}</td>
+                    <td>
+                        <form action="/friendships/remove" method="POST">
+                            <input type="hidden" name="friend_id" value="{{ friendship.id }}">
+                            <button type="submit">Remover</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Nenhuma amizade/seguimento encontrado.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/friendships/requests">Ver solicitações de amizade</a>
+{% endblock %}

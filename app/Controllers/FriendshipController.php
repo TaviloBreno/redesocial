@@ -1,41 +1,95 @@
 <?php
-
 namespace App\Controllers;
 
 use App\Models\Friendship;
+use App\Models\User;
+use App\Core\Controller;
 use App\Core\View;
 
-class FriendshipController
+class FriendshipController extends Controller
 {
-    private $friendshipModel;
     private $view;
 
     public function __construct()
     {
-        $this->friendshipModel = new Friendship();
         $this->view = new View();
     }
 
-    // Adicionar um amigo
-    public function add($user_id, $friend_id)
+    public function index()
     {
-        if (!$this->friendshipModel->exists($user_id, $friend_id)) {
-            $this->friendshipModel->add($user_id, $friend_id);
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header("Location: /login");
+            exit;
         }
-        header('Location: /users/' . $friend_id);
+
+        $userId = $_SESSION['user']['id'];
+        $friendship = new Friendship();
+        $friendships = $friendship->getAllByUserId($userId);
+
+        $this->view->render('friendship/index', ['friendships' => $friendships]);
     }
 
-    // Remover um amigo
-    public function remove($user_id, $friend_id)
+    public function requests()
     {
-        $this->friendshipModel->remove($user_id, $friend_id);
-        header('Location: /users/' . $friend_id);
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header("Location: /login");
+            exit;
+        }
+
+        $userId = $_SESSION['user']['id'];
+        $friendship = new Friendship();
+        $requests = $friendship->getRequestsByUserId($userId);
+
+        $this->view->render('friendship/requests', ['requests' => $requests]);
     }
 
-    // Listar amigos
-    public function list($user_id)
+    public function acceptRequest()
     {
-        $friends = $this->friendshipModel->getFriends($user_id);
-        return $this->view->render('friendships/list.twig', ['friends' => $friends]);
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header("Location: /login");
+            exit;
+        }
+
+        $userId = $_SESSION['user']['id'];
+        $requestId = $_POST['request_id'] ?? '';
+
+        $friendship = new Friendship();
+        $friendship->acceptRequest($userId, $requestId);
+        header("Location: /friendships/requests");
+    }
+
+    public function rejectRequest()
+    {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header("Location: /login");
+            exit;
+        }
+
+        $userId = $_SESSION['user']['id'];
+        $requestId = $_POST['request_id'] ?? '';
+
+        $friendship = new Friendship();
+        $friendship->rejectRequest($userId, $requestId);
+        header("Location: /friendships/requests");
+    }
+
+    public function removeFriendship()
+    {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header("Location: /login");
+            exit;
+        }
+
+        $userId = $_SESSION['user']['id'];
+        $friendId = $_POST['friend_id'] ?? '';
+
+        $friendship = new Friendship();
+        $friendship->removeFriendship($userId, $friendId);
+        header("Location: /friendships");
     }
 }

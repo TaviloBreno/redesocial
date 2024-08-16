@@ -1,0 +1,40 @@
+{# views/friendship/requests.twig #}
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+    <h2>Solicitações de Amizade</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for request in requests %}
+                <tr>
+                    <td>{{ request.username }}</td>
+                    <td>{{ request.email }}</td>
+                    <td>
+                        <form action="/friendships/accept" method="POST" style="display:inline;">
+                            <input type="hidden" name="request_id" value="{{ request.id }}">
+                            <button type="submit">Aceitar</button>
+                        </form>
+                        <form action="/friendships/reject" method="POST" style="display:inline;">
+                            <input type="hidden" name="request_id" value="{{ request.id }}">
+                            <button type="submit">Rejeitar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Nenhuma solicitação de amizade encontrada.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/friendships">Ver minhas amizades / seguimentos</a>
+{% endblock %}

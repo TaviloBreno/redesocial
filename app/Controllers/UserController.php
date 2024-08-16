@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Models\Friendship;
 use App\Core\Controller;
 use App\Core\View;
 
@@ -23,23 +24,19 @@ class UserController extends Controller
     // Processa o registro do usuário
     public function register()
     {
-        // Recebe os dados do formulário
         $username = $_POST['username'] ?? '';
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
 
-        // Valida os dados
         if (empty($username) || empty($email) || empty($password)) {
             echo "Todos os campos são obrigatórios!";
             return;
         }
 
-        // Cria o novo usuário
         $user = new User();
         try {
             $user->register($username, $password, $email);
             echo "Registro bem-sucedido!";
-            // Redireciona para a página de login
             header("Location: /login");
         } catch (\Exception $e) {
             echo "Erro ao registrar usuário: " . $e->getMessage();
@@ -55,22 +52,18 @@ class UserController extends Controller
     // Processa o login do usuário
     public function login()
     {
-        // Recebe os dados do formulário
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
 
-        // Valida os dados
         if (empty($username) || empty($password)) {
             echo "Todos os campos são obrigatórios!";
             return;
         }
 
-        // Verifica o login do usuário
         $user = new User();
         $authenticatedUser = $user->login($username, $password);
 
         if ($authenticatedUser) {
-            // Inicia a sessão e redireciona para o perfil
             session_start();
             $_SESSION['user'] = $authenticatedUser;
             header("Location: /profile");
@@ -82,7 +75,6 @@ class UserController extends Controller
     // Exibe o perfil do usuário
     public function profile()
     {
-        // Verifica se o usuário está autenticado
         session_start();
         if (!isset($_SESSION['user'])) {
             header("Location: /login");
@@ -92,7 +84,59 @@ class UserController extends Controller
         $userId = $_SESSION['user']['id'];
         $user = new User();
         $userData = $user->find($userId);
-        
         $this->view->render('user/profile', ['user' => $userData]);
+    }
+
+    // Envia uma solicitação de amizade
+    public function sendFriendRequest($friendId)
+    {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header("Location: /login");
+            exit;
+        }
+
+        $userId = $_SESSION['user']['id'];
+        $friendship = new Friendship();
+        try {
+            $friendship->sendRequest($userId, $friendId);
+            echo "Solicitação de amizade enviada!";
+        } catch (\Exception $e) {
+            echo "Erro ao enviar solicitação: " . $e->getMessage();
+        }
+    }
+
+    // Aceita uma solicitação de amizade
+    public function acceptFriendRequest($requestId)
+    {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header("Location: /login");
+            exit;
+        }
+
+        $userId = $_SESSION['user']['id'];
+        $friendship = new Friendship();
+        try {
+            $friendship->acceptRequest($userId, $requestId);
+            echo "Solicitação de amizade aceita!";
+        } catch (\Exception $e) {
+            echo "Erro ao aceitar solicitação: " . $e->getMessage();
+        }
+    }
+
+    // Lista os amigos do usuário
+    public function listFriends()
+    {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header("Location: /login");
+            exit;
+        }
+
+        $userId = $_SESSION['user']['id'];
+        $friendship = new Friendship();
+        $friends = $friendship->listFriends($userId);
+        $this->view->render('user/friends', ['friends' => $friends]);
     }
 }

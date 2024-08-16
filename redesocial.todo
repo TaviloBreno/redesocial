@@ -16,9 +16,9 @@ Comentários:
     ✔ View: Atualize as views de postagem para incluir a seção de comentários. @done(24-08-15 23:41)
 Sistema de Amizade/Seguimento:
 
-    ☐ Model: Crie o modelo de Amizade/Seguimento.
-    ☐ Controller: Adicione funcionalidades de amizade/seguimento ao controlador de Usuário.
-    ☐ View: Desenvolva as views para gerenciamento de amizades/seguimentos.
+    ✔ Model: Crie o modelo de Amizade/Seguimento. @done(24-08-15 23:50)
+    ✔ Controller: Adicione funcionalidades de amizade/seguimento ao controlador de Usuário. @done(24-08-15 23:56)
+    ✔ View: Desenvolva as views para gerenciamento de amizades/seguimentos. @done(24-08-16 00:10)
 5. Autenticação e Autorização
 Implementar Autenticação:
 

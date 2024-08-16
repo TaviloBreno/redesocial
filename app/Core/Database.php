@@ -24,6 +24,7 @@ class Database
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
+            exit;
         }
     }
 
@@ -44,5 +45,20 @@ class Database
     public function prepare($sql)
     {
         return $this->pdo->prepare($sql);
+    }
+
+    public function beginTransaction()
+    {
+        return $this->pdo->beginTransaction();
+    }
+
+    public function commit()
+    {
+        return $this->pdo->commit();
+    }
+
+    public function rollBack()
+    {
+        return $this->pdo->rollBack();
     }
 }
