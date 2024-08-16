@@ -1,0 +1,26 @@
+{# views/posts/index.twig #}
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+    <div class="posts-list">
+        <div class="posts-container">
+            <h2 class="posts-title">Lista de Postagens</h2>
+            <a href="/posts/create" class="create-post-button">Criar Nova Postagem</a>
+
+            {% if posts is empty %}
+                <p class="no-posts">Nenhuma postagem encontrada.</p>
+            {% else %}
+                <ul class="posts">
+                    {% for post in posts %}
+                        <li class="post-item">
+                            <a href="/posts/{{ post.id }}" class="post-link">
+                                <h3 class="post-title">{{ post.title }}</h3>
+                                <p class="post-excerpt">{{ post.content | slice(0, 100) ~ '...' }}</p>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

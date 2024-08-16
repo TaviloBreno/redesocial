@@ -1,0 +1,12 @@
+{# views/posts/view.twig #}
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+    <div class="post-view">
+        <div class="post-container">
+            <h2 class="post-title">{{ post.title }}</h2>
+            <p class="post-content">{{ post.content }}</p>
+            <a href="/posts" class="back-button">Voltar à Lista de Postagens</a>
+        </div>
+    </div>
+{% endblock %}

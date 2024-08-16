@@ -1,0 +1,26 @@
+{# views/posts/create.twig #}
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+    <div class="login">
+        <div class="login-container">
+            <h2 class="login-title">Criar Nova Postagem</h2>
+            {% if error %}
+                <div class="alert alert-danger">
+                    <p>Por favor, preencha todos os campos.</p>
+                </div>
+            {% endif %}
+            <form action="/posts" method="POST" class="login-form">
+                <div class="form-group">
+                    <label for="title" class="form-label">Título:</label>
+                    <input type="text" name="title" id="title" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="content" class="form-label">Conteúdo:</label>
+                    <textarea name="content" id="content" class="form-input" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="login-button">Criar Postagem</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

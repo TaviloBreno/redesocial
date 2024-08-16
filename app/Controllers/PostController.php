@@ -4,13 +4,16 @@ namespace App\Controllers;
 
 use App\Models\Post;
 use App\Core\Controller;
+use App\Core\View;
 
 class PostController extends Controller
 {
+    private $view;
+
     // Função para exibir a página de criação de postagem
     public function create()
     {
-        $this->view('posts/create'); // Renderiza a view para criar uma nova postagem
+        $this->view = new View();
     }
 
     // Função para processar o formulário de criação de postagem
@@ -42,11 +45,8 @@ class PostController extends Controller
     // Função para listar todas as postagens
     public function index()
     {
-        $post = new Post();
-        $posts = $post->all(); // Obtém todas as postagens do banco de dados
-
         // Renderiza a view com a lista de postagens
-        $this->view('posts/index', ['posts' => $posts]);
+        $this->view->render('posts/index');
     }
 
     // Função para visualizar uma postagem específica
@@ -57,7 +57,7 @@ class PostController extends Controller
 
         if ($postDetails) {
             // Renderiza a view com os detalhes da postagem
-            $this->view('posts/show', ['post' => $postDetails]);
+            $this->view->render('posts/show', ['post' => $postDetails]);
         } else {
             // Redireciona para a lista de postagens com uma mensagem de erro
             header('Location: /posts?error=1');
