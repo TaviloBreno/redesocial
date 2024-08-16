@@ -3,59 +3,77 @@
 namespace App\Controllers;
 
 use App\Models\Post;
-use App\Models\Comment;
-use App\Core\Database;
+use App\Core\Controller;
 use App\Core\View;
 
-class PostController
+class PostController extends Controller
 {
-    private $postModel;
-    private $commentModel;
     private $view;
 
     public function __construct()
     {
-        $database = new Database(); // Certifique-se de passar a configuração correta
-        $this->postModel = new Post($database);
-        $this->commentModel = new Comment($database);
         $this->view = new View();
     }
 
     public function index()
     {
-        $posts = $this->postModel->all();
-        $this->view->render('posts/index', ['posts' => $posts]);
-    }
-
-    public function view($id)
-    {
-        $post = $this->postModel->find($id);
-        if (!$post) {
-            throw new \Exception("Post not found.");
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header("Location: /login");
+            exit;
         }
-        $comments = $this->commentModel->getAllByPostId($id);
-        $this->view->render('posts/view', ['post' => $post, 'comments' => $comments]);
+
+        $post = new Post();
+        $posts = $post->all();
+        $this->view->render('post/index', ['posts' => $posts]);
     }
 
     public function create()
     {
-        $this->view->render('posts/create');
-        $this->postModel->create($_POST['user_id'], $_POST['content']);
-        header("Location: /posts");
-        exit();
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header("Location: /login");
+            exit;
+        }
+
+        $this->view->render('post/create');
     }
 
-    public function addComment($postId)
+    public function store()
     {
-        if (!isset($_POST['user_id']) || !isset($_POST['content'])) {
-            throw new \Exception("Invalid comment data.");
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header("Location: /login");
+            exit;
         }
-        $userId = $_POST['user_id'];
-        $content = $_POST['content'];
-        $this->commentModel->create($postId, $userId, $content);
-        
-        // Redirect to a specific page
-        header("Location: /posts/view/$postId");
-        exit();
+
+        $userId = $_SESSION['user']['id'];
+        $content = $_POST['content'] ?? '';
+
+        if (empty($content)) {
+            echo "O conteúdo da postagem não pode estar vazio!";
+            return;
+        }
+
+        $post = new Post();
+        try {
+            $post->create($userId, $content);
+            header("Location: /posts");
+        } catch (\Exception $e) {
+            echo "Erro ao criar postagem: " . $e->getMessage();
+        }
+    }
+
+    public function show($id)
+    {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header("Location: /login");
+            exit;
+        }
+
+        $post = new Post();
+        $postData = $post->find($id);
+        $this->view->render('post/show', ['post' => $postData]);
     }
 }

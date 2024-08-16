@@ -2,15 +2,16 @@
 
 namespace App\Middleware;
 
-use App\Core\Session;
-
 class AuthMiddleware
 {
-    public static function handle()
+    public function handle($request, $next)
     {
-        if (!Session::has('user_id')) {
-            header('Location: /login');
-            exit();
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header("Location: /login");
+            exit;
         }
+
+        return $next($request);
     }
 }
