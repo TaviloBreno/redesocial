@@ -3,65 +3,59 @@
 namespace App\Controllers;
 
 use App\Models\Post;
-use App\Core\Controller;
+use App\Models\Comment;
+use App\Core\Database;
 use App\Core\View;
 
-class PostController extends Controller
+class PostController
 {
+    private $postModel;
+    private $commentModel;
     private $view;
 
-    // Função para exibir a página de criação de postagem
-    public function create()
+    public function __construct()
     {
+        $database = new Database(); // Certifique-se de passar a configuração correta
+        $this->postModel = new Post($database);
+        $this->commentModel = new Comment($database);
         $this->view = new View();
     }
 
-    // Função para processar o formulário de criação de postagem
-    public function store()
-    {
-        // Verifica se o método da requisição é POST
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Obtém dados do formulário
-            $title = $_POST['title'] ?? '';
-            $content = $_POST['content'] ?? '';
-
-            // Valida os dados
-            if ($title && $content) {
-                // Cria uma nova postagem no banco de dados
-                $post = new Post();
-                $post->create($title, $content);
-
-                // Redireciona para a lista de postagens
-                header('Location: /posts');
-                exit;
-            } else {
-                // Redireciona de volta com uma mensagem de erro
-                header('Location: /posts/create?error=1');
-                exit;
-            }
-        }
-    }
-
-    // Função para listar todas as postagens
     public function index()
     {
-        // Renderiza a view com a lista de postagens
-        $this->view->render('posts/index');
+        $posts = $this->postModel->all();
+        $this->view->render('posts/index', ['posts' => $posts]);
     }
 
-    // Função para visualizar uma postagem específica
-    public function show($id)
+    public function view($id)
     {
-        $post = new Post();
-        $postDetails = $post->find($id); // Obtém a postagem específica pelo ID
-
-        if ($postDetails) {
-            // Renderiza a view com os detalhes da postagem
-            $this->view->render('posts/show', ['post' => $postDetails]);
-        } else {
-            // Redireciona para a lista de postagens com uma mensagem de erro
-            header('Location: /posts?error=1');
-            exit;
+        $post = $this->postModel->find($id);
+        if (!$post) {
+            throw new \Exception("Post not found.");
         }
+        $comments = $this->commentModel->getAllByPostId($id);
+        $this->view->render('posts/view', ['post' => $post, 'comments' => $comments]);
+    }
+
+    public function create()
+    {
+        $this->view->render('posts/create');
+        $this->postModel->create($_POST['user_id'], $_POST['content']);
+        header("Location: /posts");
+        exit();
+    }
+
+    public function addComment($postId)
+    {
+        if (!isset($_POST['user_id']) || !isset($_POST['content'])) {
+            throw new \Exception("Invalid comment data.");
+        }
+        $userId = $_POST['user_id'];
+        $content = $_POST['content'];
+        $this->commentModel->create($postId, $userId, $content);
+        
+        // Redirect to a specific page
+        header("Location: /posts/view/$postId");
+        exit();
     }
 }

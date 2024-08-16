@@ -11,8 +11,8 @@ Postagens:
     ✔ View: Desenvolva as views para criar e visualizar postagens (views/post/create.php, views/post/view.php). @done(24-08-15 23:23)
 Comentários:
 
-    ☐ Model: Crie o modelo de Comentário (Comment.php).
-    ☐ Controller: Adicione funcionalidades de comentário ao controlador de Postagem.
+    ✔ Model: Crie o modelo de Comentário (Comment.php). @done(24-08-15 23:28)
+    ✔ Controller: Adicione funcionalidades de comentário ao controlador de Postagem. @done(24-08-15 23:37)
     ☐ View: Atualize as views de postagem para incluir a seção de comentários.
 Sistema de Amizade/Seguimento:
 
