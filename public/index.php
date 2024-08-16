@@ -8,8 +8,7 @@ use App\Core\Router;
 $router = new Router();
 
 // Inclui os arquivos de rotas
-require_once __DIR__ . '/../routes/home.php';
-require_once __DIR__ . '/../routes/user.php';
+require_once __DIR__ . '/../routes/web.php';;
 
 // Obtém o método e URI da requisição
 $method = $_SERVER['REQUEST_METHOD'];

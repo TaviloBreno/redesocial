@@ -14,18 +14,41 @@ class Post
         $this->db = (new Database())->getPdo();
     }
 
-    public function create($userId, $content)
+    public function create($title, $content)
     {
-        $stmt = $this->db->prepare("INSERT INTO posts (user_id, content) VALUES (:user_id, :content)");
-        $stmt->execute([
-            ':user_id' => $userId,
-            ':content' => $content
-        ]);
+        $stmt = $this->db->prepare("INSERT INTO posts (title, content) VALUES (:title, :content)");
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':content', $content);
+        $stmt->execute();
     }
 
-    public function getAll()
+    public function all()
     {
-        $stmt = $this->db->query("SELECT p.*, u.username FROM posts p JOIN users u ON p.user_id = u.id ORDER BY p.created_at DESC");
+        $stmt = $this->db->query("SELECT * FROM posts");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function find($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM posts WHERE id = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function update($id, $title, $content)
+    {
+        $stmt = $this->db->prepare("UPDATE posts SET title = :title, content = :content WHERE id = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':content', $content);
+        $stmt->execute();
+    }
+
+    public function delete($id)
+    {
+        $stmt = $this->db->prepare("DELETE FROM posts WHERE id = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
     }
 }
